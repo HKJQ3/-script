@@ -19,12 +19,12 @@ local UI = loadstring(game:HttpGet("https://raw.githubusercontent.com/kkaaccnnbb
 
 local win = UI:new("Admin")
 local tab = win:Tab("脚本")
-local section = tab:section("在下面选择你要的版本",true)
+local section = tab:section("在下面选择你要的功能",true)
 section:Button("定制功能",function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/HKJQ3/-script/refs/heads/main/UT"))()
 end)
-section:Button("限时功能(空)",function()
-
+section:Button("限时功能",function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/HKJQ3/-script/refs/heads/main/传送物品"))()
 end)
 
 local section = tab:section("UI设置",true)
