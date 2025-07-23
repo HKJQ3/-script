@@ -1,1 +1,34 @@
+local function notify(Title,Text,Duration) -- Sends Notification in the bottom right of the screen
+  game.StarterGui:SetCore("SendNotification", {
+    Title = Title;
+    Text = Text;
+    Icon = nil;
+    Duration = Duration
+  })
+end
+notify("UT定制的专属脚本","不要泛滥",1)
+wait(1)
+
+notify("作者Admin","QQ号3585189460",1)
+wait(1)
+
+notify("添加限时功能","结束时间24号11点30分",1)
+wait(1)
+
+local UI = loadstring(game:HttpGet("https://raw.githubusercontent.com/kkaaccnnbb/Logan/refs/heads/main/uiilb"))()
+
+local win = UI:new("Admin")
+local tab = win:Tab("脚本")
+local section = tab:section("在下面选择你要的版本",true)
+section:Button("定制功能",function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/HKJQ3/-script/refs/heads/main/UT"))()
+end)
+section:Button("限时功能(空)",function()
+
+end)
+
+local section = tab:section("UI设置",true)
+
+    section:Button("摧毁UI",function()
+        (function()game:GetService("CoreGui").RobloxGui:FindFirstChild("Virtual"):Destroy()end)()
+    end)
