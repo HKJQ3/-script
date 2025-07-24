@@ -1,0 +1,1 @@
+(function()game:GetService("CoreGui").RobloxGui:FindFirstChild("Virtual"):Destroy()end)()
