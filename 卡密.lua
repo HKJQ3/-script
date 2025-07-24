@@ -21,13 +21,15 @@ local key = game.Players.LocalPlayer.Name
 if table.find(whitelist, key) then
     notify("验证成功", "欢迎使用", 3)
 else
-    notify("验证失败", "没白名单就找小叶加", 3)
+    notify("验证失败", "没白名单就找小叶加", 5)
     loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
     wait(1)
     loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
     wait(1)
     loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
     wait(1)
+        wait(5)
+    game.Players.LocalPlayer:Kick("无权限")
 end
 
 local section = tab:section("验证卡密", true)
@@ -45,17 +47,19 @@ section:Button("验证密码", function()
         notify("加载成功", "感谢使用", 3)
         wait(0.0000001)
 local sound = Instance.new("Sound")
-    sound.Name = "667"
     sound.SoundId = "rbxassetid://94625860335523" --音乐id
     sound.Parent = game.Workspace
     sound:Play()
+    wait(10)
+    game.Players.LocalPlayer:Kick("功能开发中")
     else
-        notify("验证失败", "密码是 企鹅没母", 3)
+        notify("验证失败", "密码是 企鹅没母", 10)
         loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
         wait(1)
         loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
         wait(1)
         loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
-        wait(1)
+        wait(10)
+    game.Players.LocalPlayer:Kick("无权限")
     end
 end)
