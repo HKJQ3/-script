@@ -1,6 +1,6 @@
 local CoreGui = game:GetService("StarterGui")
 -- 定义白名单表格，存储多个白名单用户名
-local whitelist = {"test1000200", "sd16488", "cfdrtdhdtff54", "ytr7279"} -- 可根据需求添加更多用户名
+local whitelist = {"test1000200", "sd16488", "cfdrtdhdtff54", "ytr7279", "gospiggy27787"} -- 可根据需求添加更多用户名
 
 local function notify(t, j, d)
     CoreGui:SetCore("SendNotification", {
@@ -21,7 +21,7 @@ local key = game.Players.LocalPlayer.Name
 if table.find(whitelist, key) then
     notify("验证成功", "欢迎使用", 3)
 else
-    notify("验证失败", "没白名单就买去", 3)
+    notify("验证失败", "没白名单就找小叶加", 3)
     loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
     wait(1)
     loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
@@ -37,8 +37,18 @@ end)
 section:Button("验证密码", function()
     if key == " 企鹅没母" then
         notify("验证成功", "企鹅没版权", 3)
-        wait(10)
+        wait(5)
         loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
+        wait(0.0000001)
+        notify("正在加载脚本", "请稍等", 3)
+        wait(1)
+        notify("加载成功", "感谢使用", 3)
+        wait(0.0000001)
+local sound = Instance.new("Sound")
+    sound.Name = "667"
+    sound.SoundId = "rbxassetid://94625860335523" --音乐id
+    sound.Parent = game.Workspace
+    sound:Play()
     else
         notify("验证失败", "密码是 企鹅没母", 3)
         loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
