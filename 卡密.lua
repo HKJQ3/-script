@@ -1,6 +1,6 @@
 local CoreGui = game:GetService("StarterGui")
 -- 定义白名单表格，存储多个白名单用户名
-local whitelist = {"test1000200", "sd16488", "cfdrtdhdtff54", "ytr7279", "gospiggy27787"} -- 可根据需求添加更多用户名
+local whitelist = {"test1000200", "sd16488", "cfdrtdhdtff54", "ytr7279", "godpiggy27787"} -- 可根据需求添加更多用户名
 
 local function notify(t, j, d)
     CoreGui:SetCore("SendNotification", {
