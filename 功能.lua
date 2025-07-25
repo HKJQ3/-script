@@ -8,8 +8,8 @@ local uiTab1 = win:Tab("『信息』",'4483345998')
 local about = uiTab1:section("查看作者信息",true)
 
 about:Label("作者：小叶")
-about:Label("漏洞修复者：Admin")
-about:Label("技术支持者：Admin")
+about:Label("漏洞修复者：Nova")
+about:Label("技术支持者：Nova")
 
 
 local about = uiTab1:section("查看玩家信息",true)
