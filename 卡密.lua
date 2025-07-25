@@ -18,7 +18,6 @@ local function loadWhitelistFromGitHub()
     if success then
         -- 解析文本：按换行分割成用户名列表（根据你的文件格式调整）
         whitelist = string.split(response,"\n")
-        print("白名单加载成功，共", #whitelist, "个用户")
     else
         warn("白名单加载失败：" .. response)
     end
@@ -44,8 +43,6 @@ local function startWhitelistCheckLoop()
         if not isInWhitelist(player.Name) then
             player:Kick("白名单验证失败，已移除访问权限")
             break  -- 踢出后终止循环
-        else
-            print(player.Name .. "仍在白名单中，验证通过")
         end
     end
 end
@@ -62,6 +59,7 @@ else
     spawn(startWhitelistCheckLoop)  -- 使用spawn单独开启线程，避免阻塞后续代码
 end
 --白名单--
+
 
 local CoreGui = game:GetService("StarterGui") 
 local function notify(t,j,d)
@@ -86,20 +84,16 @@ section:Button("验证文本",function()
         notify("验证成功","",3)
         loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
         wait(1)
-        loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
-        wait(1)
-        getgenv().ImageOpen="https://raw.githubusercontent.com/kkaaccnnbb/troll/refs/heads/main/Screenshot_2024_1031_113319.png"--开关
-getgenv().ImageHttp="https://raw.githubusercontent.com/HKJQ3/-script/refs/heads/main/Image_1753417347791.jpg"--背景
-local ui = loadstring(game:HttpGet("https://raw.githubusercontent.com/HKJQ3/-script/refs/heads/main/UI%E5%8A%A0%E5%AF%86.lua"))()
-local win = ui:new("")
-
-    
+ 
+       
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/HKJQ3/-script/refs/heads/main/%E5%8A%9F%E8%83%BD.lua"))()
     else
         notify("验证失败","",3)
-        loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
+       pcall(function() loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
       wait(1)
       
       loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
       wait(1)
+end)
     end
 end)
