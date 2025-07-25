@@ -1,43 +1,282 @@
-local LBLG = Instance.new("ScreenGui", getParent)
-local LBL = Instance.new("TextLabel", getParent)
-local player = game.Players.LocalPlayer
+repeat task.wait() until game:IsLoaded()
+local library = {}
+local ToggleUI = false
+library.currentTab = nil
+library.flags = {}
 
-LBLG.Name = "LBLG"
-LBLG.Parent = game.CoreGui
-LBLG.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-LBLG.Enabled = true
-LBL.Name = "LBL"
-LBL.Parent = LBLG
-LBL.BackgroundColor3 = Color3.new(1, 1, 1)
-LBL.BackgroundTransparency = 1
-LBL.BorderColor3 = Color3.new(0, 0, 0)
-LBL.Position = UDim2.new(0.75,0,0.010,0)
-LBL.Size = UDim2.new(0, 133, 0, 30)
-LBL.Font = Enum.Font.GothamSemibold
-LBL.Text = "TextLabel"
-LBL.TextColor3 = Color3.new(1, 1, 1)
-LBL.TextScaled = true
-LBL.TextSize = 14
-LBL.TextWrapped = true
-LBL.Visible = true
+local services = setmetatable({}, {
+  __index = function(t, k)
+    return game.GetService(game, k)
+  end
+})
 
-local FpsLabel = LBL
-local Heartbeat = game:GetService("RunService").Heartbeat
-local LastIteration, Start
-local FrameUpdateTable = { }
+local mouse = services.Players.LocalPlayer:GetMouse()
 
-local function HeartbeatUpdate()
-    LastIteration = tick()
-    for Index = #FrameUpdateTable, 1, -1 do
-        FrameUpdateTable[Index + 1] = (FrameUpdateTable[Index] >= LastIteration - 1) and FrameUpdateTable[Index] or nil
-    end
-    FrameUpdateTable[1] = LastIteration
-    local CurrentFPS = (tick() - Start >= 1 and #FrameUpdateTable) or (#FrameUpdateTable / (tick() - Start))
-    CurrentFPS = CurrentFPS - CurrentFPS % 1
-    FpsLabel.Text = ("时间:"..os.date("%H").."时"..os.date("%M").."分"..os.date("%S"))
+function Tween(obj, t, data)
+	services.TweenService:Create(obj, TweenInfo.new(t[1], Enum.EasingStyle[t[2]], Enum.EasingDirection[t[3]]), data):Play()
+	return true
 end
-Start = tick()
-Heartbeat:Connect(HeartbeatUpdate)
-game:GetService("StarterGui"):SetCore("SendNotification",{ Title = "如果没有功能就再启动一下"; Text ="如果没有功能就再启动一下"; Duration = 2; })
-ui = loadstring(game:HttpGet("https://raw.githubusercontent.com/djdu894/ui/refs/heads/main/ui.lua"))();  
-return ui
+
+function Ripple(obj)
+	spawn(function()
+		if obj.ClipsDescendants ~= true then
+			obj.ClipsDescendants = true
+		end
+		local Ripple = Instance.new("ImageLabel")
+		Ripple.Name = "Ripple"
+		Ripple.Parent = obj
+		Ripple.BackgroundColor3 = Color3.fromRGB(139, 0, 255)
+		Ripple.BackgroundTransparency = 1.000
+		Ripple.ZIndex = 8
+		Ripple.Image = "rbxassetid://17894875649"
+		Ripple.ImageTransparency = 0.800
+		Ripple.ScaleType = Enum.ScaleType.Fit
+		Ripple.ImageColor3 = Color3.fromRGB(139, 0, 255)
+		Ripple.Position = UDim2.new((mouse.X - Ripple.AbsolutePosition.X) / obj.AbsoluteSize.X, 0, (mouse.Y - Ripple.AbsolutePosition.Y) / obj.AbsoluteSize.Y, 0)
+		Tween(Ripple, {.3, 'Linear', 'InOut'}, {Position = UDim2.new(-5.5, 0, -5.5, 0), Size = UDim2.new(12, 0, 12, 0)})
+		wait(0.15)
+		Tween(Ripple, {.3, 'Linear', 'InOut'}, {ImageTransparency = 1})
+		wait(.3)
+		Ripple:Destroy()
+	end)
+end
+
+local toggled = false
+
+-- # Switch Tabs # --
+local switchingTabs = false
+function switchTab(new)
+  if switchingTabs then return end
+  local old = library.currentTab
+  if old == nil then
+    new[2].Visible = true
+    library.currentTab = new
+    services.TweenService:Create(new[1], TweenInfo.new(0.1), {ImageTransparency = 0}):Play()
+    services.TweenService:Create(new[1].TabText, TweenInfo.new(0.1), {TextTransparency = 0}):Play()
+    return
+  end
+  
+  if old[1] == new[1] then return end
+  switchingTabs = true
+  library.currentTab = new
+
+  services.TweenService:Create(old[1], TweenInfo.new(0.1), {ImageTransparency = 0.2}):Play()
+  services.TweenService:Create(new[1], TweenInfo.new(0.1), {ImageTransparency = 0}):Play()
+  services.TweenService:Create(old[1].TabText, TweenInfo.new(0.1), {TextTransparency = 0.2}):Play()
+  services.TweenService:Create(new[1].TabText, TweenInfo.new(0.1), {TextTransparency = 0}):Play()
+
+  old[2].Visible = false
+  new[2].Visible = true
+  
+  task.wait(0.1)
+
+  switchingTabs = false
+end
+
+-- # Drag, Stolen from Kiriot or Wally # --
+function drag(frame, hold)
+	if not hold then
+		hold = frame
+	end
+	local dragging
+	local dragInput
+	local dragStart
+	local startPos
+
+	local function update(input)
+		local delta = input.Position - dragStart
+		frame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	end
+
+	hold.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 then
+			dragging = true
+			dragStart = input.Position
+			startPos = frame.Position
+
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragging = false
+				end
+			end)
+		end
+	end)
+
+	frame.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement then
+			dragInput = input
+		end
+	end)
+
+	services.UserInputService.InputChanged:Connect(function(input)
+		if input == dragInput and dragging then
+			update(input)
+		end
+	end)
+end
+
+function library.new(library, name,theme)
+    for _, v in next, services.CoreGui:GetChildren() do
+        if v.Name == "frosty" then
+          v:Destroy()
+        end
+      end
+-----------------------------Virt-----------------------------
+if isfile("Image") and isfile("image") then delfile("Image") delfile("image") end
+ImageHttp = getgenv().ImageHttp
+ImageOpen = getgenv().ImageOpen
+-----------------------------Virt-----------------------------
+-------------------------AL------------------------------
+ALTransparency = 0.6
+ALcolor = Color3.fromRGB(0,255,127)
+-------------------------AL------------------------------
+if theme == 'dark' then
+    MainColor = Color3.fromRGB(25, 25, 25)
+    Background = Color3.fromRGB(25, 25, 25)
+    zyColor= Color3.fromRGB(25, 25, 25)
+    beijingColor = Color3.fromRGB(25, 25, 25)
+    else
+    MainColor = Color3.fromRGB(25, 25, 25)
+    Background = Color3.fromRGB(25, 25, 25)
+    zyColor= Color3.fromRGB(25, 25, 25)
+    beijingColor = Color3.fromRGB(25, 25, 25)
+end
+      local dogent = Instance.new("ScreenGui")
+      local Main = Instance.new("Frame")
+      local TabMain = Instance.new("Frame")
+      local MainC = Instance.new("UICorner")
+      local SB = Instance.new("Frame")
+      local SBC = Instance.new("UICorner")
+      local Side = Instance.new("Frame")
+      local SideG = Instance.new("UIGradient")
+      local TabBtns = Instance.new("ScrollingFrame")
+      local TabBtnsL = Instance.new("UIListLayout")
+      local ScriptTitle = Instance.new("TextLabel")
+      local SBG = Instance.new("UIGradient") 
+      local Open = Instance.new("ImageButton")
+      local UIG=Instance.new("UIGradient")
+      local DropShadowHolder = Instance.new("Frame")
+      local DropShadow = Instance.new("ImageLabel")
+      local UICornerMain = Instance.new("UICorner")
+      local UIGradient=Instance.new("UIGradient")
+      local UIGradientTitle=Instance.new("UIGradient")
+      local Frame = Instance.new("Frame")
+      local UICorner = Instance.new("UICorner")
+      local UICorner_2 = Instance.new("UICorner")
+      
+      if syn and syn.protect_gui then syn.protect_gui(dogent) end
+    
+      dogent.Name = "frosty"
+      dogent.Parent = services.CoreGui
+      
+      function UiDestroy()
+          dogent:Destroy()
+      end
+      
+          function ToggleUILib()
+            if not ToggleUI then
+                dogent.Enabled = false
+                ToggleUI = true
+                else
+                ToggleUI = false
+                dogent.Enabled = true
+            end
+        end
+      
+      Main.Name = "Main"
+      Main.Parent = dogent
+      Main.AnchorPoint = Vector2.new(0.5, 0.5)
+      Main.BackgroundColor3 = Background
+      Main.BorderColor3 = MainColor
+      Main.Position = UDim2.new(0.5, 0, 0.5, 0)
+      Main.Size = UDim2.new(0, 572, 0, 353)
+      Main.ZIndex = 1
+      Main.Active = true
+      Main.Draggable = true
+      Main.Transparency = 1.0
+      services.UserInputService.InputEnded:Connect(function(input)
+      if input.KeyCode == Enum.KeyCode.LeftControl then
+      if Main.Visible == true then
+      Main.Visible = false else
+      Main.Visible = true
+      end
+      end
+      end)
+      drag(Main)
+      
+      UICornerMain.Parent = Main
+      UICornerMain.CornerRadius = UDim.new(0,3)
+      
+      DropShadowHolder.Name = "DropShadowHolder"
+      DropShadowHolder.Parent = Main
+      DropShadowHolder.BackgroundTransparency = 1.000
+      DropShadowHolder.BorderSizePixel = 0
+      DropShadowHolder.Size = UDim2.new(1, 0, 1, 0)
+      DropShadowHolder.BorderColor3 = Color3.fromRGB(255,255,255)
+      DropShadowHolder.ZIndex = 0
+-----------------------------图片-----------------------------
+writefile("Image",game:HttpGet(ImageHttp))
+-----------------------------图片-----------------------------
+      DropShadow.Name = "DropShadow"
+      DropShadow.Parent = DropShadowHolder
+      DropShadow.AnchorPoint = Vector2.new(0.5, 0.5)
+      DropShadow.BackgroundTransparency = 1.000
+      DropShadow.Position = UDim2.new(0.5, 0, 0.5, 0)
+      DropShadow.Size = UDim2.new(1, 10, 1, 10)
+      DropShadow.Image = getcustomasset("Image",true) --背景
+      DropShadow.ImageColor3 = Color3.fromRGB(255,255,255)
+      DropShadow.SliceCenter = Rect.new(49, 49, 450, 450)
+
+
+      UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 0, 0)), ColorSequenceKeypoint.new(0.10, Color3.fromRGB(255, 127, 0)), ColorSequenceKeypoint.new(0.20, Color3.fromRGB(255, 255, 0)), ColorSequenceKeypoint.new(0.30, Color3.fromRGB(0, 255, 0)), ColorSequenceKeypoint.new(0.40, Color3.fromRGB(0, 255, 255)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(0, 0, 255)), ColorSequenceKeypoint.new(0.60, Color3.fromRGB(139, 0, 255)), ColorSequenceKeypoint.new(0.70, Color3.fromRGB(255, 0, 0)), ColorSequenceKeypoint.new(0.80, Color3.fromRGB(255, 127, 0)), ColorSequenceKeypoint.new(0.90, Color3.fromRGB(255, 255, 0)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(0, 255, 0))}
+
+      local TweenService = game:GetService("TweenService")
+      local tweeninfo = TweenInfo.new(7, Enum.EasingStyle.Linear, Enum.EasingDirection.In, -1)
+      local tween = TweenService:Create(UIGradient, tweeninfo, {Rotation = 360})
+      tween:Play()
+
+          function toggleui()
+            toggled = not toggled
+            spawn(function()
+                if toggled then wait(0.3) end
+            end)
+            Tween(Main, {0.3, 'Sine', 'InOut'}, {
+                Size = UDim2.new(0, 609, 0, (toggled and 505 or 0))
+            })
+        end
+      
+      TabMain.Name = "TabMain"
+      TabMain.Parent = Main
+      TabMain.BackgroundColor3 = Color3.fromRGB(139, 0, 255)
+      TabMain.BackgroundTransparency = 1.000
+      TabMain.Position = UDim2.new(0.217000037, 0, 0, 3)
+      TabMain.Size = UDim2.new(0, 448, 0, 353)
+      TabMain.Transparency = 1.0
+      
+      MainC.CornerRadius = UDim.new(0, 5.5)
+      MainC.Name = "MainC"
+      MainC.Parent = Frame
+      
+      
+      SB.Name = "SB"
+      SB.Parent = Main
+      SB.BackgroundColor3 = Color3.fromRGB(139, 0, 255)
+      SB.BorderColor3 = MainColor
+      SB.Size = UDim2.new(0, 8, 0, 353)
+      SB.Transparency = 1.0
+      
+      SBC.CornerRadius = UDim.new(0, 6)
+      SBC.Name = "SBC"
+      SBC.Parent = SB
+      
+      Side.Name = "Side"
+      Side.Parent = SB
+      Side.BackgroundColor3 = Color3.fromRGB(139, 0, 255)
+      Side.BorderColor3 = Color3.fromRGB(139, 0, 255)
+      Side.BorderSizePixel = 0
+      Side.ClipsDescendants = true
+      Side.Position = UDim2.new(1, 0, 0, 0)
+      Side.Size = UDim2.new(0, 110, 0, 353)
+      Side.Transparency = 1.0
+      
+      SideG.Color = ColorSequence.new{ColorSequenceKeypoin
