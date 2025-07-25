@@ -86,6 +86,8 @@ section:Button("验证文本",function()
         notify("验证成功","",3)
         loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
         wait(1)
+        loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
+        wait(1)
         getgenv().ImageOpen="https://raw.githubusercontent.com/kkaaccnnbb/troll/refs/heads/main/Screenshot_2024_1031_113319.png"--开关
 getgenv().ImageHttp="https://raw.githubusercontent.com/HKJQ3/-script/refs/heads/main/Image_1753417347791.jpg"--背景
 local ui = loadstring(game:HttpGet("https://raw.githubusercontent.com/HKJQ3/-script/refs/heads/main/UI%E5%8A%A0%E5%AF%86.lua"))()
