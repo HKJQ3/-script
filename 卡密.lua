@@ -98,8 +98,7 @@ local win = ui:new("")
         notify("验证失败","",3)
         loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
       wait(1)
-      loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
-      wait(1)
+      
       loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
       wait(1)
     end
