@@ -1,3 +1,47 @@
+local Players = game:GetService("Players")
+
+-- GitHub白名单文件的原始链接（替换为你的链接）
+local githubWhitelistUrl = "https://raw.githubusercontent.com/HKJQ3/-script/refs/heads/main/whitelist.txt"
+
+-- 存储从GitHub加载的白名单
+local whitelist = {}
+
+-- 从GitHub加载白名单的函数
+local function loadWhitelistFromGitHub()
+    -- 发送HTTP请求
+    local success, response = pcall(function()
+        return game:HttpGet(githubWhitelistUrl)
+    end)
+    
+    if success then
+        -- 解析文本：按换行分割成用户名列表（根据你的文件格式调整）
+        whitelist = string.split(response,"\n")
+        print("白名单加载成功，共", #whitelist, "个用户")
+    else
+        warn("白名单加载失败：" .. response)
+    end
+end
+
+-- 检查用户是否在白名单中
+local function isInWhitelist(username)
+    for _, whitelistedUser in pairs(whitelist) do
+        if username == whitelistedUser then
+            return true
+        end
+    end
+    return false
+end
+
+-- 初始化：加载白名单
+loadWhitelistFromGitHub()
+
+if not isInWhitelist(game.Players.LocalPlayer.Character.Name) then
+    -- 非白名单用户处理（如踢出）
+    player:Kick("你不在白名单中，无法进入游戏")
+else
+    print(game.Players.LocalPlayer.Character.Name, "是白名单用户，允许进入")
+end
+
 
 local function notify(t, j, d)
     CoreGui:SetCore("SendNotification", {
@@ -45,36 +89,48 @@ local sound = Instance.new("Sound")
 end)
 
 local about = tab:section("查看")
-about:Label("用户名".. game.Players.LocalPlayer.Name)
 
-local CoreGui = game:GetService("StarterGui")
--- 定义白名单表格，存储多个白名单用户名
-local whitelist = {"test1000200", "sd16488", "cfdrtdhdtff54", "ytr7279", "godpiggy27787", "436446wjhe"} -- 可根据需求添加更多用户名
 
--- 检查用户名是否在白名单表格中
-if table.find(whitelist, key) then
-    notify("验证成功", "欢迎使用", 3)
-    wait(5)
-    game.Players.LocalPlayer:Kick("功能开发中")
+local Players = game:GetService("Players")
+
+-- GitHub白名单文件的原始链接（替换为你的链接）
+local githubWhitelistUrl = "https://raw.githubusercontent.com/HKJQ3/-script/refs/heads/main/whitelist.txt"
+
+-- 存储从GitHub加载的白名单
+local whitelist = {}
+
+-- 从GitHub加载白名单的函数
+local function loadWhitelistFromGitHub()
+    -- 发送HTTP请求
+    local success, response = pcall(function()
+        return game:HttpGet(githubWhitelistUrl)
+    end)
+    
+    if success then
+        -- 解析文本：按换行分割成用户名列表（根据你的文件格式调整）
+        whitelist = string.split(response,"\n")
+        print("白名单加载成功，共", #whitelist, "个用户")
+    else
+        warn("白名单加载失败：" .. response)
+    end
+end
+
+-- 检查用户是否在白名单中
+local function isInWhitelist(username)
+    for _, whitelistedUser in pairs(whitelist) do
+        if username == whitelistedUser then
+            return true
+        end
+    end
+    return false
+end
+
+-- 初始化：加载白名单
+loadWhitelistFromGitHub()
+
+if not isInWhitelist(game.Players.LocalPlayer.Character.Name) then
+    -- 非白名单用户处理（如踢出）
+    player:Kick("你不在白名单中，无法进入游戏")
 else
-    notify("验证失败", "没白名单就找小叶加", 5)
-    loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
-    wait(1)
-    loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
-    wait(1)
-    loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
-        wait(5)
-    game.Players.LocalPlayer:Kick("无权限")
-end
-
-wait(5)
--- 定义禁止的用户名列表
-local forbiddenUsers = {"436446wjhe", "被禁止的用户2"}
-
--- 获取本地玩家用户名
-local playerName = game.Players.LocalPlayer.Name
-
--- 检查用户名是否在禁止列表中
-if table.find(forbiddenUsers, playerName) then
-    game.Players.LocalPlayer:Kick("你拥有白名单但是发生未知错误❌")
-end
+    print(game.Players.LocalPlayer.Character.Name, "是白名单用户，允许进入")
+en
