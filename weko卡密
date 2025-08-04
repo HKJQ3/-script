@@ -1,3 +1,6 @@
+local NotificationLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/IceMinisterq/Notification-Library/Main/Library.lua"))()
+
+
 --白名单--
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer  -- 提前获取本地玩家对象
@@ -52,46 +55,12 @@ loadWhitelistFromGitHub()
 
 if not isInWhitelist(player.Name) then
     -- 非白名单用户处理（如踢出）
-    player:Kick("你不在白名单中，无法进入游戏")
+    NotificationLibrary:SendNotification("Error", "💔加载失败", 4)
 else
-    print(player.Name, "是白名单用户，允许进入")
+    NotificationLibrary:SendNotification("Success", "👍加载成功", 4)
+    wait(0)
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/kkaaccnnbb/Virtual/refs/heads/main/VirtualLT.lua"))()
     -- 启动定时检查循环
     spawn(startWhitelistCheckLoop)  -- 使用spawn单独开启线程，避免阻塞后续代码
 end
 --白名单--
-
-
-local CoreGui = game:GetService("StarterGui") 
-local function notify(t,j,d)
-    CoreGui:SetCore("SendNotification", { 
-        Title = t, 
-        Text = j, 
-        Duration = d,  
-    })
-end
- 
-local UI = loadstring(game:HttpGet("https://raw.githubusercontent.com/kkaaccnnbb/Logan/refs/heads/main/uiilb"))()
-
-local win = UI:new("Virtual")
-local tab = win:Tab("名字")
-
-local section = tab:section("验证卡密",true)
-section:Textbox("请输入文本", 'TextBoxfalg', "FREE_1ee5f31f0fb3ce69bff3aec2d1aa2247", function(txt)
-    key = txt
-end)
-section:Button("验证文本",function()
-    if key == "FREE_1ee5f31f0fb3ce69bff3aec2d1aa2247" then
-        notify("验证成功","",3)
-        loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
-        wait(0)
-       loadstring(game:HttpGet("https://raw.githubusercontent.com/kkaaccnnbb/Virtual/refs/heads/main/VirtualLT.lua"))()
-      else
-        notify("验证失败请找作者要卡密","",3)
-       pcall(function() loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
-      wait(0)
-      
-      loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
-      wait(0)
-end)
-    end
-end)
