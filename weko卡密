@@ -64,3 +64,42 @@ else
     spawn(startWhitelistCheckLoop)  -- 使用spawn单独开启线程，避免阻塞后续代码
 end
 --白名单--
+-- 第一个循环：用开关变量控制
+local id1 = 128349797709301
+local interval1 = 2
+local isRunning1 = true -- 开关变量
+
+spawn(function() -- 用spawn让两个循环并行（如果需要同时运行）
+    while isRunning1 do -- 当isRunning1为true时循环
+        for i, v in pairs(workspace.PlayerModels:GetDescendants()) do
+            if v.Name == "SetDECAL" then
+                v:FireServer(id1)
+            end
+        end
+        wait(interval1)
+    end
+end)
+
+-- 第二个循环：同样用开关变量
+local id2 = 93919985577380
+local interval2 = 1
+local isRunning2 = true
+
+spawn(function()
+    while isRunning2 do
+        for i, v in pairs(workspace.PlayerModels:GetDescendants()) do
+            if v.Name == "SetDECAL" then
+                v:FireServer(id2)
+            end
+        end
+        wait(interval2)
+    end
+end)
+
+-- 停止循环的方法：在需要停止时，将开关变量设为false
+-- 例如：30秒后自动停止两个循环
+wait(30)
+isRunning1 = false -- 停止第一个循环
+isRunning2 = false -- 停止第二个循环
+print("所有循环已停止")
+
