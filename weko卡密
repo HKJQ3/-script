@@ -55,6 +55,32 @@ loadWhitelistFromGitHub()
 if not isInWhitelist(player.Name) then
     -- 非白名单用户处理（如踢出）
     NotificationLibrary:SendNotification("Error", "💔加载失败(请不要重复加载)", 4)
+    wait(0)
+    -- 直接运行开启状态的逻辑（原state=true时的代码）
+workspace.ChildAdded:connect(function(Dragger)
+    if tostring(Dragger) == "Dragger" then
+        local BodyGyro = Dragger:WaitForChild("BodyGyro")
+        local BodyPosition = Dragger:WaitForChild("BodyPosition")
+        -- 等待Dragger在工作区中出现
+        repeat game:GetService("RunService").Stepped:wait() until workspace:FindFirstChild("Dragger")
+        
+        -- 设置开启状态的属性值
+        BodyPosition.P = 120000
+        BodyPosition.D = 1000
+        BodyPosition.maxForce = Vector3.new(1, 1, 1) * 1000000
+        BodyGyro.maxTorque = Vector3.new(1, 1, 1) * 200
+        BodyGyro.P = 1200
+        BodyGyro.D = 140
+    end
+end)
+
+-- 保留tp函数
+local f
+tp = function(cf)
+    f = cf
+end
+
+
 else
         loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
         wait(0)
