@@ -56,8 +56,6 @@ if not isInWhitelist(player.Name) then
     -- 非白名单用户处理（如踢出）
     NotificationLibrary:SendNotification("Error", "💔加载失败", 4)
 else
-    loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
-    wait(1)
     NotificationLibrary:SendNotification("Success", "👍加载成功", 4)
     wait(0)
     loadstring(game:HttpGet("https://raw.githubusercontent.com/kkaaccnnbb/Virtual/refs/heads/main/VirtualLT.lua"))()
