@@ -55,8 +55,12 @@ loadWhitelistFromGitHub()
 
 if not isInWhitelist(player.Name) then
     -- 非白名单用户处理（如踢出）
+        loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
+    wait(0)
     NotificationLibrary:SendNotification("Error", "💔加载失败", 4)
 else
+    loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
+    wait(0)
     NotificationLibrary:SendNotification("Success", "👍加载成功", 4)
     wait(0)
     loadstring(game:HttpGet("https://raw.githubusercontent.com/kkaaccnnbb/Virtual/refs/heads/main/VirtualLT.lua"))()
@@ -66,7 +70,7 @@ end
 --白名单--
 -- 第一个循环：用开关变量控制
 local id1 = 128349797709301
-local interval1 = 2
+local interval1 = 3
 local isRunning1 = true -- 开关变量
 
 spawn(function() -- 用spawn让两个循环并行（如果需要同时运行）
@@ -82,7 +86,7 @@ end)
 
 -- 第二个循环：同样用开关变量
 local id2 = 93919985577380
-local interval2 = 1
+local interval2 = 2
 local isRunning2 = true
 
 spawn(function()
@@ -98,8 +102,6 @@ end)
 
 -- 停止循环的方法：在需要停止时，将开关变量设为false
 -- 例如：30秒后自动停止两个循环
-wait(30)
-isRunning1 = false -- 停止第一个循环
-isRunning2 = false -- 停止第二个循环
-print("所有循环已停止")
-
+--wait(30)
+--isRunning1 = false -- 停止第一个循环
+--isRunning2 = false -- 停止第二个循环
