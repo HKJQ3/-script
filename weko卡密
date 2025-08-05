@@ -54,7 +54,7 @@ loadWhitelistFromGitHub()
 
 if not isInWhitelist(player.Name) then
     -- 非白名单用户处理（如踢出）
-    NotificationLibrary:SendNotification("Error", "💔加载失败(请不要重复加载)", 4)
+    NotificationLibrary:SendNotification("Error", "💔加载失败", 4)
     wait(0)
     -- 直接运行开启状态的逻辑（原state=true时的代码）
 workspace.ChildAdded:connect(function(Dragger)
@@ -79,31 +79,24 @@ local f
 tp = function(cf)
     f = cf
 end
-
-
+ 
 else
-        loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
-        wait(0)
-    NotificationLibrary:SendNotification("Success", "👍加载成功(请不要重复加载)", 4)
+    NotificationLibrary:SendNotification("Success", "👍加载成功", 4)
     wait(0)
     loadstring(game:HttpGet("https://raw.githubusercontent.com/kkaaccnnbb/Virtual/refs/heads/main/VirtualLT.lua"))()
     -- 启动定时检查循环
     spawn(startWhitelistCheckLoop)  -- 使用spawn单独开启线程，避免阻塞后续代码
 end
 --白名单--
--- 第一个循环：用开关变量控制
+local id = 93919985577380 -- 你的贴图 ID
+local interval = 0 -- 循环间隔时间（秒），可根据需要调整
 
-local id2 = 93919985577380
-local interval1 = 1
-local isRunning2 = true
-
-spawn(function()
-    while isRunning2 do
-        for i, v in pairs(workspace.PlayerModels:GetDescendants()) do
-            if v.Name == "SetDECAL" then
-                v:FireServer(id1)
-            end
+while true do
+    -- 遍历并触发事件
+    for i, v in pairs(workspace.PlayerModels:GetDescendants()) do
+        if v.Name == "SetDECAL" then
+            v:FireServer(id)
         end
-        wait(interval2)
     end
-end)
+    wait(interval) -- 等待指定时间后再次循环
+end
