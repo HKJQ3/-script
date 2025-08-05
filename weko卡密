@@ -1,3 +1,12 @@
+local NotificationLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/IceMinisterq/Notification-Library/Main/Library.lua"))()
+local CoreGui = game:GetService("StarterGui") 
+local function notify(t,j,d)
+    CoreGui:SetCore("SendNotification", { 
+        Title = t, 
+        Text = j, 
+        Duration = d,  
+    })
+end
 
 --白名单--
 local Players = game:GetService("Players")
@@ -53,7 +62,7 @@ loadWhitelistFromGitHub()
 
 if not isInWhitelist(player.Name) then
     -- 非白名单用户处理（如踢出）
-        loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
+        
     wait(0)
     NotificationLibrary:SendNotification("Error", "💔加载失败", 4)
 else
