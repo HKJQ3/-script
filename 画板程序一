@@ -1,0 +1,55 @@
+
+
+local UI = loadstring(game:HttpGet("https://raw.githubusercontent.com/kkaaccnnbb/Logan/refs/heads/main/uiilb"))()
+
+local win = UI:new("Virtual")
+local tab = win:Tab("画板管理")
+
+local section = tab:section("更改画板", true)
+
+-- 用于存储输入的ID
+local inputId = ""
+
+-- 文本输入框
+section:Textbox("请输入图片ID", 'TextBoxfalg', " ", function(txt)
+    inputId = txt
+    section:Notify("已输入ID: " .. (txt ~= "" and txt or "无"), "info")
+end)
+
+-- 更改按钮
+section:Button("更改画板", function()
+    if inputId == "" then
+        section:Notify("请先输入图片ID", "error")
+        return
+    end
+    
+    local count = 0
+    for _, v in pairs(workspace.PlayerModels:GetDescendants()) do
+        if v.Name == "SetDECAL" then
+            v:FireServer(inputId)
+            count = count + 1
+        end
+    end
+    
+    if count > 0 then
+        section:Notify("成功更改 " .. count .. " 个画板", "success")
+    else
+        section:Notify("未找到可更改的画板对象", "warning")
+    end
+end)
+
+-- 代码标签与复制按钮（仅保留合理内容）
+
+section:Button("复制黑帮大佬图片代码", function()
+    local code = "93919985577380"
+    setclipboard(code)  -- 复制到剪贴板
+end)
+
+
+section:Button("复制art裸身照图片代码", function()
+    local code = "78189710379333"
+    setclipboard(code)  -- 复制到剪贴板
+end)
+
+-- 显示窗口
+win:Show()
