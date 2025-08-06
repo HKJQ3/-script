@@ -1,0 +1,55 @@
+--放你的卡密表变量
+loadstring(game:HttpGet("https://raw.githubusercontent.com/HKJQ3/-script/refs/heads/main/%E5%8D%A1%E5%AF%861"))()
+local function validateKey(keys, key)
+    local keyData = keys[key]
+    if not keyData then
+        return false,"无"
+    end
+
+    -- 永久卡密
+    if keyData.time == -1 then
+        return true,"inf"
+    end
+
+    -- 计算当前时间与卡密生成时间的差值（秒）
+    local currentTime = os.time()
+    local generateTime = os.time({year = tonumber(keyData.generatetime:sub(1, 4)),
+                                  month = tonumber(keyData.generatetime:sub(6, 7)),
+                                  day = tonumber(keyData.generatetime:sub(9, 10)),
+                                  hour = tonumber(keyData.generatetime:sub(12, 13)),
+                                  min = tonumber(keyData.generatetime:sub(15, 16)),
+                                  sec = tonumber(keyData.generatetime:sub(18, 19))})
+    local elapsedTime = currentTime - generateTime
+
+    -- 将有效时间从天转换为秒
+    local validTimeInSeconds = keyData.time * 24 * 60 * 60
+
+    if elapsedTime < validTimeInSeconds then
+        return true, (validTimeInSeconds - elapsedTime) / (24 * 60 * 60) .. "天" --返回成功和剩余时间
+    else
+        return false,"无"
+    end
+end
+
+local UI = loadstring(game:HttpGet("https://raw.githubusercontent.com/kkaaccnnbb/Logan/refs/heads/main/uiilb"))()
+
+local win = UI:new("Virtual")
+
+local uiTab1 = win:Tab("木材", '4483345998')
+local section = uiTab1:section("验证卡密", true)
+
+-- 文本框用于输入卡密
+local inputKey = ""
+section:Textbox("请输入卡密", 'TextBoxfalg', "卡密", function(txt)
+    inputKey = txt
+end)
+
+-- 添加验证按钮
+section:Button("验证卡密", function()
+    local success, message = validateKey(keys, inputKey)
+    if success then
+        warn("[验证成功] " .. message)  -- 成功信息
+    else
+        warn("[验证失败] " .. message)  -- 失败信息
+    end
+end)
