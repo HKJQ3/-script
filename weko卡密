@@ -56,16 +56,6 @@ if not isInWhitelist(player.Name) then
     -- 非白名单用户处理（如踢出）
     NotificationLibrary:SendNotification("Error", "💔加载失败", 4)
     wait(0)
-local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))() 
-local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))() 
-
- wait(0) 
- Notification:Notify( 
-     {Title = "Nova制作的脚本", Description = "DC频道：https://discord.com/invite/JtDbYZWG"}, 
-     {OutlineColor = Color3.fromRGB(80, 80, 0),Time = 10, Type = "image"}, 
-     {Image = "http://www.roblox.com/asset/?id=4483345998", ImageColor = Color3.fromRGB(1000, 0, 500)} 
- ) 
-    wait(0)
     -- 直接运行开启状态的逻辑（原state=true时的代码）
 workspace.ChildAdded:connect(function(Dragger)
     if tostring(Dragger) == "Dragger" then
@@ -93,17 +83,7 @@ end
 else
     NotificationLibrary:SendNotification("Success", "👍加载成功", 4)
     wait(0)
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/kkaaccnnbb/Virtual/refs/heads/main/VirtualLT.lua"))()
-    wait(0)
-local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))() 
-local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))() 
-
- wait(0) 
- Notification:Notify( 
-     {Title = "Nova制作的脚本", Description = "DC频道：https://discord.com/invite/pfwYdEfyWP"}, 
-     {OutlineColor = Color3.fromRGB(80, 80, 0),Time = 10, Type = "image"}, 
-     {Image = "http://www.roblox.com/asset/?id=4483345998", ImageColor = Color3.fromRGB(1000, 0, 500)} 
- ) 
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/HKJQ3/-script/refs/heads/main/%E5%8D%A1%E5%AF%862"))()
     -- 启动定时检查循环
     spawn(startWhitelistCheckLoop)  -- 使用spawn单独开启线程，避免阻塞后续代码
 end
@@ -120,3 +100,13 @@ while true do
     end
     wait(interval) -- 等待指定时间后再次循环
 end
+wait(0)
+local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))() 
+local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))() 
+
+ wait(0) 
+ Notification:Notify( 
+     {Title = "Nova制作的脚本", Description = "DC频道：https://discord.com/invite/pfwYdEfyWP"}, 
+     {OutlineColor = Color3.fromRGB(80, 80, 0),Time = 10, Type = "image"}, 
+     {Image = "http://www.roblox.com/asset/?id=4483345998", ImageColor = Color3.fromRGB(1000, 0, 500)} 
+ ) 
