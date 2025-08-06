@@ -100,7 +100,7 @@ local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/
 
  wait(0) 
  Notification:Notify( 
-     {Title = "Nova制作的脚本", Description = "DC频道：https://discord.com/invite/JtDbYZWG"}, 
+     {Title = "Nova制作的脚本", Description = "DC频道：https://discord.com/invite/pfwYdEfyWP"}, 
      {OutlineColor = Color3.fromRGB(80, 80, 0),Time = 10, Type = "image"}, 
      {Image = "http://www.roblox.com/asset/?id=4483345998", ImageColor = Color3.fromRGB(1000, 0, 500)} 
  ) 
