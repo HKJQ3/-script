@@ -1,7 +1,7 @@
 local keys = {
-    ["Virt_foreverrh4gllfgbmhzpwv98m4adpy0um6ums5b"] = {time = 1, generatetime = "2025:08:06:18:04:41"},
-    ["Virt_weekd4jdrixs0117zckvqx913c8bqhvjbb88"] = {time = 7, generatetime = "2025:08:06:18:04:41"},
-    ["Virt_weekat0z9hurb411a9pqei8gt7zhbtvprcp9"] = {time = 7, generatetime = "2025:08:06:18:04:41"},
-    ["Virt_monthhyrylycx55ouvts1oxl5lmcj2kiiohm8"] = {time = 30, generatetime = "2025:08:06:18:04:41"},
-    ["Virt_forevermevy6re7meiq8neq1r7rtq04eynxg3ae"] = {time = -1, generatetime = "2025:08:06:18:04:41"},
+    ["Virt_forevern502b2m4qabuipiycqwutd4b0fbpdmia"] = {time = -1, generatetime = "2025:08:06:18:15:14"},
+    ["Virt_day4lixsh95yy26yjf59rwni9xpsnqsaug2"] = {time = 1, generatetime = "2025:08:06:18:15:14"},
+    ["Virt_daypn9a25jku555xuu72ap3tfnx1z165jt2"] = {time = 1, generatetime = "2025:08:06:18:15:14"},
+    ["Virt_foreverxyxhaahryhb9a55qcy4rkmxid7ephyzq"] = {time = -1, generatetime = "2025:08:06:18:15:14"},
+    ["Virt_montheuc5fv89q5a2k5wdyuegw2rdy2462bsa"] = {time = 30, generatetime = "2025:08:06:18:15:14"},
 }
