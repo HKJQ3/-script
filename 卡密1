@@ -1,4 +1,4 @@
-local keys = {
+return {
     ["Virt_forevern502b2m4qabuipiycqwutd4b0fbpdmia"] = {time = -1, generatetime = "2025:08:06:18:15:14"},
     ["Virt_day4lixsh95yy26yjf59rwni9xpsnqsaug2"] = {time = 1, generatetime = "2025:08:06:18:15:14"},
     ["Virt_daypn9a25jku555xuu72ap3tfnx1z165jt2"] = {time = 1, generatetime = "2025:08:06:18:15:14"},
