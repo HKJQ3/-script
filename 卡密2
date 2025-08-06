@@ -35,7 +35,7 @@ local UI = loadstring(game:HttpGet("https://raw.githubusercontent.com/kkaaccnnbb
 
 local win = UI:new("Virtual")
 
-local uiTab1 = win:Tab("木材", '4483345998')
+local uiTab1 = win:Tab("卡密系统", '4483345998')
 local section = uiTab1:section("验证卡密", true)
 
 -- 文本框用于输入卡密
@@ -52,4 +52,12 @@ section:Button("验证卡密", function()
     else
         warn("[验证失败] " .. message)  -- 失败信息
     end
+end)
+section:Label("作者：小叶")
+section:Label("漏洞修复者：Nova")
+section:Label("技术支持者：Nova")
+section:Label("没有卡密就找当时卖你脚本的那个人要")
+section:Button("复制DC链接", function()
+    local code = "https://discord.com/invite/AujFYRu5tQ"
+    setclipboard(code)  -- 复制到剪贴板
 end)
