@@ -49,8 +49,14 @@ section:Button("验证卡密", function()
     local success, message = validateKey(keys, inputKey)
     if success then
         warn("[验证成功] " .. message)  -- 成功信息
+                wait(0)
+        loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
+        wait(0)
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/kkaaccnnbb/Virtual/refs/heads/main/VirtualLT.lua"))()
     else
         warn("[验证失败] " .. message)  -- 失败信息
+                wait(0)
+        loadstring(game:HttpGet("https://github.com/HKJQ3/-script/raw/refs/heads/main/销毁"))()
     end
 end)
 section:Label("作者：小叶")
