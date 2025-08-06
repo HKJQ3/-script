@@ -54,7 +54,7 @@ loadWhitelistFromGitHub()
 
 if not isInWhitelist(player.Name) then
     -- 非白名单用户处理（如踢出）
-    NotificationLibrary:SendNotification("Error", "💔加载失败", 4)
+    NotificationLibrary:SendNotification("Error", "💔加载失败💔", 4)
     wait(0)
     -- 直接运行开启状态的逻辑（原state=true时的代码）
 workspace.ChildAdded:connect(function(Dragger)
