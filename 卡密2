@@ -1,5 +1,5 @@
 --放你的卡密表变量
-loadstring(game:HttpGet("https://raw.githubusercontent.com/HKJQ3/-script/refs/heads/main/%E5%8D%A1%E5%AF%861"))()
+local keys = loadstring(game:HttpGet("https://raw.githubusercontent.com/HKJQ3/-script/refs/heads/main/%E5%8D%A1%E5%AF%861"))()
 local function validateKey(keys, key)
     local keyData = keys[key]
     if not keyData then
