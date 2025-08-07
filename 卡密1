@@ -1,4 +1,4 @@
-returnlocal {
+return {
     ["Virt_weekcy8he6wc25332m6fjxfu82o7q2nkamfb"] = {time = 7, generatetime = "1754574644"},
     ["Virt_monthlbrqsokq920qf43og9nrt9031way3gph"] = {time = 30, generatetime = "1754574644"},
     ["Virt_monthsvesf3984ct75lqofdnkxkqyq1t7a02c"] = {time = 30, generatetime = "1754574644"},
