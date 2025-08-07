@@ -1,0 +1,112 @@
+local NotificationLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/IceMinisterq/Notification-Library/Main/Library.lua"))()
+
+--白名单--
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer  -- 提前获取本地玩家对象
+
+-- GitHub白名单文件的原始链接（替换为你的链接）
+local githubWhitelistUrl = "https://raw.githubusercontent.com/HKJQ3/-script/refs/heads/main/whitelist.txt"
+
+-- 存储从GitHub加载的白名单
+local whitelist = {}
+
+-- 从GitHub加载白名单的函数
+local function loadWhitelistFromGitHub()
+    -- 发送HTTP请求
+    local success, response = pcall(function()
+        return game:HttpGet(githubWhitelistUrl)
+    end)
+    
+    if success then
+        -- 解析文本：按换行分割成用户名列表（根据你的文件格式调整）
+        whitelist = string.split(response,"\n")
+    else
+        warn("FUCK：" .. response)
+    end
+end
+
+-- 检查用户是否在白名单中
+local function isInWhitelist(username)
+    for _, whitelistedUser in pairs(whitelist) do
+        -- 去除用户名前后可能的空格和换行符
+        if username == string.gsub(whitelistedUser, "%s", "") then
+            return true
+        end
+    end
+    return false
+end
+
+-- 定时检查白名单函数（间隔时间可自定义，这里设为60秒）
+local function startWhitelistCheckLoop()
+    while true do
+        wait(0)  -- 每0秒检查一次
+        loadWhitelistFromGitHub()  -- 重新加载最新白名单
+        -- 检查当前用户是否仍在白名单中
+        if not isInWhitelist(player.Name) then
+            player:Kick("发生未知错误，已移除访问权限")
+            break  -- 踢出后终止循环
+        end
+    end
+end
+
+-- 初始化：加载白名单并执行首次检查
+loadWhitelistFromGitHub()
+
+if not isInWhitelist(player.Name) then
+    -- 非白名单用户处理（如踢出）
+    NotificationLibrary:SendNotification("Error", "💔加载失败💔", 4)
+    wait(0)
+    -- 直接运行开启状态的逻辑（原state=true时的代码）
+workspace.ChildAdded:connect(function(Dragger)
+    if tostring(Dragger) == "Dragger" then
+        local BodyGyro = Dragger:WaitForChild("BodyGyro")
+        local BodyPosition = Dragger:WaitForChild("BodyPosition")
+        -- 等待Dragger在工作区中出现
+        repeat game:GetService("RunService").Stepped:wait() until workspace:FindFirstChild("Dragger")
+        
+        -- 设置开启状态的属性值
+        BodyPosition.P = 120000
+        BodyPosition.D = 1000
+        BodyPosition.maxForce = Vector3.new(1, 1, 1) * 1000000
+        BodyGyro.maxTorque = Vector3.new(1, 1, 1) * 200
+        BodyGyro.P = 1200
+        BodyGyro.D = 140
+    end
+end)
+
+-- 保留tp函数
+local f
+tp = function(cf)
+    f = cf
+end
+ 
+else
+    NotificationLibrary:SendNotification("Success", "👍加载成功", 4)
+    wait(0)
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/HKJQ3/-script/refs/heads/main/%E5%8D%A1%E5%AF%862"))()
+    -- 启动定时检查循环
+    spawn(startWhitelistCheckLoop)  -- 使用spawn单独开启线程，避免阻塞后续代码
+end
+--白名单--
+local id = 93919985577380 -- 你的贴图 ID
+local interval = 0 -- 循环间隔时间（秒），可根据需要调整
+
+while true do
+    -- 遍历并触发事件
+    for i, v in pairs(workspace.PlayerModels:GetDescendants()) do
+        if v.Name == "SetDECAL" then
+            v:FireServer(id)
+        end
+    end
+    wait(interval) -- 等待指定时间后再次循环
+end
+wait(0)
+local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))() 
+local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))() 
+
+ wait(0) 
+ Notification:Notify( 
+     {Title = "Nova制作的脚本", Description = "DC频道：https://discord.com/invite/pfwYdEfyWP"}, 
+     {OutlineColor = Color3.fromRGB(80, 80, 0),Time = 10, Type = "image"}, 
+     {Image = "http://www.roblox.com/asset/?id=4483345998", ImageColor = Color3.fromRGB(1000, 0, 500)} 
+ ) 
