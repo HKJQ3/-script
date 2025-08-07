@@ -5,8 +5,7 @@ local Players = game:GetService("Players")
 local player = Players.LocalPlayer  -- 提前获取本地玩家对象
 
 -- GitHub白名单文件的原始链接（替换为你的链接）
-local githubWhitelistUrl = "https://raw.githubusercontent.com/HKJQ3/-script/refs/heads/main/whitelist.txt"
-
+loadstring(game:HttpGet("https://raw.githubusercontent.com/HKJQ3/-script/refs/heads/main/whitelistx2"))()
 -- 存储从GitHub加载的白名单
 local whitelist = {}
 
