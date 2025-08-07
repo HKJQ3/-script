@@ -1,7 +1,12 @@
-return {
-    ["Virt_monthYDumpQvnP0BRcvfBWUODQcrLfqFJjeN1pehwmWAgArxLxIff1QD25luOwrClz"] = {time = 30, generatetime = "1754549286"},
-    ["Virt_dayqNGoKYXnhxIlT5VO8tjjsjNYEtrLz3XjSkM173RNzVUEnCae5NtIrh2ncyHfJ"] = {time = 1, generatetime = "1754549286"},
-    ["Virt_weekd3ky956WRch3Fm37n4NkywKPPjIlSgO8SL6ysAjlAd1wkvXPaHlXiHCwuodYx"] = {time = 7, generatetime = "1754549286"},
-    ["Virt_foreverb5JNyJDvKmtUnRuX7JLr0U32aQrpp91ssVO6jtlzw9kdQGMZpyl4cxwdh7y2j"] = {time = -1, generatetime = "1754549286"},
-    ["Virt_monthOOpncSXByNt2RLZDzfDc2hbarX0qcGup2swphw3blvwqfV52IX5dRxmbcBA3P"] = {time = 30, generatetime = "1754549286"},
+returnlocal {
+    ["Virt_weekcy8he6wc25332m6fjxfu82o7q2nkamfb"] = {time = 7, generatetime = "1754574644"},
+    ["Virt_monthlbrqsokq920qf43og9nrt9031way3gph"] = {time = 30, generatetime = "1754574644"},
+    ["Virt_monthsvesf3984ct75lqofdnkxkqyq1t7a02c"] = {time = 30, generatetime = "1754574644"},
+    ["Virt_weekwkjw4kk5e6shm9dzcwhvvem3dxtimbnv"] = {time = 7, generatetime = "1754574644"},
+    ["Virt_foreverm1ok7r3pej1ef76d7y5zkbdl2etbogky"] = {time = -1, generatetime = "1754574644"},
+    ["Virt_foreverb932m63jm833n9c5iv885phhyogl2js0"] = {time = -1, generatetime = "1754574673"},
+    ["Virt_monthy345rsdansl710ub4dmmmbazk31ugncr"] = {time = 30, generatetime = "1754574673"},
+    ["Virt_foreverz2we8u72vo610190el6igihrcdrl0wqr"] = {time = -1, generatetime = "1754574673"},
+    ["Virt_dayog3nzk724k7anr0rb8fz42gykdy94c41"] = {time = 1, generatetime = "1754574673"},
+    ["Virt_monthfi8nei929qaxe9vfsdz56ogdx2wgq7yp"] = {time = 30, generatetime = "1754574673"},
 }
