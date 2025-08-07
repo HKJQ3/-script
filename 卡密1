@@ -1,7 +1,7 @@
 return {
-    ["Virt_forevern502b2m4qabuipiycqwutd4b0fbpdmia"] = {time = -1, generatetime = "2025:08:06:18:15:14"},
-    ["Virt_day4lixsh95yy26yjf59rwni9xpsnqsaug2"] = {time = 1, generatetime = "2025:08:06:18:15:14"},
-    ["Virt_daypn9a25jku555xuu72ap3tfnx1z165jt2"] = {time = 1, generatetime = "2025:08:06:18:15:14"},
-    ["Virt_foreverxyxhaahryhb9a55qcy4rkmxid7ephyzq"] = {time = -1, generatetime = "2025:08:06:18:15:14"},
-    ["Virt_montheuc5fv89q5a2k5wdyuegw2rdy2462bsa"] = {time = 30, generatetime = "2025:08:06:18:15:14"},
+    ["Virt_monthYDumpQvnP0BRcvfBWUODQcrLfqFJjeN1pehwmWAgArxLxIff1QD25luOwrClz"] = {time = 30, generatetime = "1754549286"},
+    ["Virt_dayqNGoKYXnhxIlT5VO8tjjsjNYEtrLz3XjSkM173RNzVUEnCae5NtIrh2ncyHfJ"] = {time = 1, generatetime = "1754549286"},
+    ["Virt_weekd3ky956WRch3Fm37n4NkywKPPjIlSgO8SL6ysAjlAd1wkvXPaHlXiHCwuodYx"] = {time = 7, generatetime = "1754549286"},
+    ["Virt_foreverb5JNyJDvKmtUnRuX7JLr0U32aQrpp91ssVO6jtlzw9kdQGMZpyl4cxwdh7y2j"] = {time = -1, generatetime = "1754549286"},
+    ["Virt_monthOOpncSXByNt2RLZDzfDc2hbarX0qcGup2swphw3blvwqfV52IX5dRxmbcBA3P"] = {time = 30, generatetime = "1754549286"},
 }
