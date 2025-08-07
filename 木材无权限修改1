@@ -1,0 +1,54 @@
+local id = 93919985577380
+local decalInterval = 0 -- 贴图循环间隔（注意：0秒间隔可能导致性能问题）
+
+-- 启动贴图循环的协程
+coroutine.wrap(function()
+    while true do
+        for i, v in pairs(workspace.PlayerModels:GetDescendants()) do
+            if v.Name == "SetDECAL" then
+                v:FireServer(id)
+            end
+        end
+        wait(decalInterval)
+    end
+end)()
+
+local message = "WEKO"
+local msgInterval = 0 -- 消息循环间隔
+
+-- 启动消息循环的协程
+coroutine.wrap(function()
+    while true do
+        for i, v in pairs(workspace.PlayerModels:GetDescendants()) do
+            if v.Name == "SetMSG" then
+                v:FireServer(message)
+            end
+        end
+        wait(msgInterval)
+    end
+end)()
+
+
+
+wait(1)
+local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))() 
+local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))() 
+
+ wait(0) 
+ Notification:Notify( 
+     {Title = "Nova制作的脚本", Description = "DC频道：https://discord.com/invite/pfwYdEfyWP"}, 
+     {OutlineColor = Color3.fromRGB(80, 80, 0),Time = 10, Type = "image"}, 
+     {Image = "http://www.roblox.com/asset/?id=4483345998", ImageColor = Color3.fromRGB(1000, 0, 500)} 
+ ) 
+ wait(1) 
+ Notification:Notify( 
+     {Title = "Nova", Description = "已开启修改画板"}, 
+     {OutlineColor = Color3.fromRGB(80, 80, 0),Time = 10, Type = "image"}, 
+     {Image = "http://www.roblox.com/asset/?id=4483345998", ImageColor = Color3.fromRGB(1000, 0, 500)} 
+ ) 
+  wait(1) 
+ Notification:Notify( 
+     {Title = "Nova", Description = "已开启修改写字板"}, 
+     {OutlineColor = Color3.fromRGB(80, 80, 0),Time = 10, Type = "image"}, 
+     {Image = "http://www.roblox.com/asset/?id=4483345998", ImageColor = Color3.fromRGB(1000, 0, 500)} 
+ ) 
