@@ -1,33 +1,27 @@
---放你的卡密表变量
 local keys = loadstring(game:HttpGet("https://raw.githubusercontent.com/HKJQ3/-script/refs/heads/main/%E5%8D%A1%E5%AF%861"))()
+-- 验证卡密并检查是否过期
 local function validateKey(keys, key)
     local keyData = keys[key]
     if not keyData then
-        return false,"无"
+        return false,"无效"
     end
 
     -- 永久卡密
     if keyData.time == -1 then
-        return true,"inf"
+        return true,"永久"
     end
 
     -- 计算当前时间与卡密生成时间的差值（秒）
     local currentTime = os.time()
-    local generateTime = os.time({year = tonumber(keyData.generatetime:sub(1, 4)),
-                                  month = tonumber(keyData.generatetime:sub(6, 7)),
-                                  day = tonumber(keyData.generatetime:sub(9, 10)),
-                                  hour = tonumber(keyData.generatetime:sub(12, 13)),
-                                  min = tonumber(keyData.generatetime:sub(15, 16)),
-                                  sec = tonumber(keyData.generatetime:sub(18, 19))})
+    local generateTime = tonumber(keyData.generatetime)
     local elapsedTime = currentTime - generateTime
-
     -- 将有效时间从天转换为秒
     local validTimeInSeconds = keyData.time * 24 * 60 * 60
 
     if elapsedTime < validTimeInSeconds then
-        return true, (validTimeInSeconds - elapsedTime) / (24 * 60 * 60) .. "天" --返回成功和剩余时间
+        return true,"剩余时间：" .. (validTimeInSeconds - elapsedTime) / (24 * 60 * 60) .. " 天"
     else
-        return false,"无"
+        return false,"过期"
     end
 end
 
