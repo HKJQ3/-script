@@ -1,4 +1,4 @@
-{
+return {
     {WS="Glass",N="Floor1Large",CFrame=CFrame.new(-12.899879,4.300004,-123.000061) * CFrame.Angles(math.rad(-90.000000),math.rad(0.000000),math.rad(-90.000000))},
     {WS="Glass",N="Floor1Large",CFrame=CFrame.new(-12.899879,4.300004,-131.000061) * CFrame.Angles(math.rad(-90.000000),math.rad(0.000000),math.rad(-90.000000))},
     {WS="Glass",N="Floor1Large",CFrame=CFrame.new(-12.899879,4.300004,-139.000061) * CFrame.Angles(math.rad(-90.000000),math.rad(0.000000),math.rad(-90.000000))},
