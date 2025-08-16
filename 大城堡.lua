@@ -1,4 +1,4 @@
-local Builds = {
+return {
     {WS="Glass",N="Wall2Tall",CFrame=CFrame.new(304.000122,21.399996,-175.500061) * CFrame.Angles(math.rad(0.000000),math.rad(0.000000),math.rad(0.000000))},
     {WS="Glass",N="Wall2Tall",CFrame=CFrame.new(304.000122,21.399996,-180.500061) * CFrame.Angles(math.rad(0.000000),math.rad(0.000000),math.rad(0.000000))},
     {WS="Glass",N="Wall2Tall",CFrame=CFrame.new(304.000122,21.399996,-173.500061) * CFrame.Angles(math.rad(180.000000),math.rad(0.000000),math.rad(180.000000))},
