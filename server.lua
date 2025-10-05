@@ -1,23 +1,18 @@
--- 直接踢人函数（Delta适配）
-local function kick(user)
-    game:GetService("Players"):GetPlayerByUserId(user.UserId):Kick("Virtual-全部复制完")
+-- 踢人
+local function kick()
+    game:GetService("Players").LocalPlayer:Kick("Virtual-全部复制完")
 end
 
 -- 主逻辑
---_G = "Virtual-无条件创建私人服务器"   -- 正常情况留着这行；测试时注释掉看踢人效果
+--_G.VirtualScript = "Virtual-无条件创建私人服务器"   -- 留着；测试时注释掉看踢人
 
 local function checkAndCopy(text)
-    if _G.myFlag ~= "Virtual-无条件创建私人服务器" then
-        -- 谁运行就踢谁
-        kick(game:GetService("Players").LocalPlayer)
+    if _G.VirtualScript ~= "Virtual-无条件创建私人服务器" then
+        kick()
         return
     end
-    local setclipboard = setclipboard or syn and syn.write_clipboard or print
-    setclipboard(text)
+    (setclipboard or syn and syn.write_clipboard or print)(text)
 end
-
--- 跑
-checkAndCopy("点击链接加入群聊【Virtual脚本❶】：https://qun.qq.com/universal-share/share?ac=1&authKey=rtdvmJqa6jnwWnkt%2BiNc1U9aN9ikQ7CXq2OyuaFLMOi6%2Fgnr3EAqV14xjRoeK3Vl&busi_data=eyJncm91cENvZGUiOiI5NzgzOTE4MjUiLCJ0b2tlbiI6IjRNMnc1YVpuK0ZSMWZhNEVqNnpHOFdjNWFqNGpWQm13c0g5ZG9Vdm94cmRoRzJROXR0T3dhRUtzUUgxVUV4RmgiLCJ1aW4iOiIyMDUyMzQ2NTU4In0%3D&data=Z-QERsd9ZZuqDOXZUeIGCj24xnDBdm6OHbIJu2wXSC3UKbt0jfQo9ISD6rEAmVuvqnY6Mql28_SjWmbP5lOG7w&svctype=4&tempid=h5_group_info")
 
 
 
